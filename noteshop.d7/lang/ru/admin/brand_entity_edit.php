@@ -1,0 +1,11 @@
+<?
+$MESS['BRAND_ADMIN_ENTITY_TITLE'] = 'Бренды';
+$MESS['BRAND_ADMIN_ENTITY_RIGHTS'] = 'Права доступа';
+$MESS['BRAND_ADMIN_ENTITY_EDIT_NAME'] = 'Название';
+$MESS['BRAND_ADMIN_ENTITY_EDIT_TABLE_NAME'] = 'Название таблицы в БД';
+$MESS['BRAND_ADMIN_ENTITY_EDIT_FIELDS_COUNT'] = 'Поля сущности';
+$MESS['BRAND_ADMIN_ENTITY_EDIT_PAGE_TITLE_EDIT'] = 'Бренд "#NAME#": Редактирование';
+$MESS['BRAND_ADMIN_ENTITY_EDIT_PAGE_TITLE_NEW'] = 'Создание нового брендa';
+$MESS['BRAND_ADMIN_ENTITY_EDIT_ROWS_COUNT'] = 'Записи';
+$MESS['BRAND_ADMIN_ENTITY_EDIT_LANGS'] = 'Языкозависимые названия:';
+$MESS['BRAND_ADMIN_ENTITY_RIGHTS_ADD'] = 'Добавить';
