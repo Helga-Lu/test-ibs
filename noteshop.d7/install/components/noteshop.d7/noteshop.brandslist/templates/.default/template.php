@@ -27,7 +27,7 @@ $APPLICATION->IncludeComponent('bitrix:main.ui.grid', '', [
 		['id' => 'NAME', 'name' => 'Название бренда', 'sort' => 'NAME', 'default' => true],
 
     ], 
-    'ROWS' => $list, //Самое интересное, опишем ниже
+    'ROWS' => $list, 
     'SHOW_ROW_CHECKBOXES' => false, 
     'NAV_OBJECT' => $nav, 
     'AJAX_MODE' => 'Y', 
