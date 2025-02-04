@@ -1,6 +1,6 @@
 <?
-print_r("Brandlist template");
-print_r($arResult);
+//print_r("Brandlist template");
+//print_r($arResult);
 foreach ($arResult["TABLE"] as $row) {
 	//print_r($row['NAME']);
 $list[] = [
@@ -11,7 +11,7 @@ $list[] = [
 		'actions' => [],
 ];
 }
-print_r($list);
+//print_r($list);
 $grid_options = new Bitrix\Main\Grid\Options('report_list');
 $sort = $grid_options->GetSorting(['sort' => ['ID' => 'DESC'], 'vars' => ['by' => 'by', 'order' => 'order']]);
 $nav_params = $grid_options->GetNavParams();

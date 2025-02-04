@@ -1,12 +1,13 @@
 <?
-print_r("Brand template");
-print_r($arResult);
+//print_r("Brand template");
+//print_r($arResult);
 foreach ($arResult["TABLE"] as $row) {
 	//print_r($row['NAME']);
 $list[] = [
 		'data' => [
 			"ID" => $row['ID'],
-			"NAME" => $row['NAME'],
+
+			"NAME" => '<a href="/noteshop/'.$arResult["BRID"].'/'.$row["ID"].'/">'.$row['NAME'].'</a>',
 			"BRAND_ID" => $row['BRAND_ID'],
 		],
 		'actions' => [],

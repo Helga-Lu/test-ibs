@@ -36,30 +36,31 @@ class NoteshopTemplate extends CBitrixComponent
     }
     protected function getResult()
     {
-        if ($this->startResultCache()) {
-            $cachePath = "/" . SITE_ID . $this->GetRelativePath();
-            $taggedCache = Application::getInstance()->getTaggedCache();
-            $taggedCache->startTagCache($cachePath);
-            $taggedCache->registerTag('noteshop');
+			$this->arResult["MID"] = null;
+		if(preg_match("~^/noteshop/[0-9]+/([0-9]+)/$~",$_SERVER["REQUEST_URI"],$match))
+			{
+				$this->arResult["MID"] = $match[1];
+			}
             $query = new Bitrix\Main\Entity\Query(
                 \Noteshop\d7\DataTable::getEntity()
             );
             $res = $query->setSelect(array('*'))
+				->setFilter(array("=MODEL_ID" => $this->arResult["MID"]))
                 ->setCacheTtl(3600)
                 ->exec();
-			//$this->arResult["SITE"] = json_decode($this->arResult['SITE']);
-			$this->arResult["Data"] = array();
+
+			$this->arResult["TABLE"] = array();
 			while ($row = $res->fetch()) {
-				array_push($this->arResult["Data"], $row);
+				array_push($this->arResult["TABLE"], $row);
 			}
 
             if (!empty($this->arResult["EXCEPTIONS"])) {
                 $this->arResult["EXCEPTIONS"] = preg_split("/\r\n|\n|\r/", $this->arResult['EXCEPTIONS']);
             }
-            $taggedCache->endTagCache();
+
             $this->arResult["SETTINGS"] = \Bitrix\Main\Config\Option::getForModule("noteshop.d7");
-            $this->EndResultCache();
-        }
+
+
         $this->IncludeComponentTemplate();
     }
 }

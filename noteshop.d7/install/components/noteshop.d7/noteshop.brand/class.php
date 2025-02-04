@@ -35,41 +35,35 @@ class NoteshopTemplate extends CBitrixComponent
         return $arParams;
     }
     protected function getResult()
-	{//print_r($_SERVER["REQUEST_URI"]);
-		$this->arResult["REQ_ID"] = '';
-		if(preg_match("~^/noteshop/([0-9]+)/$~",$_SERVER["REQUEST_URI"],$match))
+			{$this->arResult["BRID"] = null;
+			if(preg_match("~^/noteshop/([0-9]+)/$~",$_SERVER["REQUEST_URI"],$match))
 			{
-				$this->$arResult["REQ_ID"] = $match[1];
-				print_r($this->$arResult["REQ_ID"]);
+				$this->arResult["BRID"] = $match[1];
 			}
-        if ($this->startResultCache()) {
-            $cachePath = "/" . SITE_ID . $this->GetRelativePath();
-            $taggedCache = Application::getInstance()->getTaggedCache();
-            $taggedCache->startTagCache($cachePath);
-            $taggedCache->registerTag('noteshop');
             $query = new Bitrix\Main\Entity\Query(
                 \Noteshop\d7\ModelTable::getEntity()
             );
             $res = $query->setSelect(array('*'))
+				->setFilter(array("=BRAND_ID" => $this->arResult["BRID"]))
                 ->setCacheTtl(3600)
                 ->exec();
-			$this->arResult["REQ_ID"] = $this->arResult["REQ_ID"];
-			$this->arResult["SITE"] = json_decode($this->arResult['SITE']);
+
 			$this->arResult["TABLE"] = array();
+
 			while ($row = $res->fetch()) {
 				//array_push($this->arResult["TABLE"], ["DATA"=>$row,"ACTIONS"=>[]]);
 			array_push($this->arResult["TABLE"], $row);
 				//$this->arResult["TABLE"] = $this->arResult["TABLE"] + ["DATA"=>$row,"ACTIONS"=>[]];
 			}
 
+
             if (!empty($this->arResult["EXCEPTIONS"])) {
                 $this->arResult["EXCEPTIONS"] = preg_split("/\r\n|\n|\r/", $this->arResult['EXCEPTIONS']);
             }
-            $taggedCache->endTagCache();
+
             $this->arResult["SETTINGS"] = \Bitrix\Main\Config\Option::getForModule("noteshop.d7");
-            $this->EndResultCache();
+			$this->IncludeComponentTemplate();
         }
-        $this->IncludeComponentTemplate();
-    }
+
 }
 
