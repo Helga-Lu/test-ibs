@@ -44,20 +44,7 @@ $aTabs = array(
                     "460" => "460Х306",
                     "360" => "360Х242",
                 ))
-            ),
-            "Название секции multiselectbox",
-            array(
-                "note_multiselectbox",
-                "Поясняющий текс элемента multiselectbox",
-                "left, bottom",
-                array("multiselectbox", array(
-                    "left" => "Лево",
-                    "right" => "Право",
-                    "top" => "Верх",
-                    "bottom" => "Низ",
-                ))
             )
-        )
     ),
     array(
         "DIV"   => "edit2",
